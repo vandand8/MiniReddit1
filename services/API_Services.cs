@@ -6,7 +6,7 @@ namespace webAPIMiniReddit.API_Services
     {
         private readonly HttpClient http;
         private readonly IConfiguration configuration;
-        private readonly string baseAPI = "";
+        private readonly string baseAPI = " ";
 
         public Api_Service(HttpClient http, IConfiguration configuration)
         {
