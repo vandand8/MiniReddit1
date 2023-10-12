@@ -12,12 +12,12 @@ namespace webAPIMiniReddit.Migrations
         {
             migrationBuilder.RenameColumn(
                 name: "stem",
-                table: "Tråde",
+                table: "Traade",
                 newName: "stemOp");
 
             migrationBuilder.AddColumn<int>(
                 name: "stemNed",
-                table: "Tråde",
+                table: "Traade",
                 type: "INTEGER",
                 nullable: false,
                 defaultValue: 0);
@@ -28,11 +28,11 @@ namespace webAPIMiniReddit.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "stemNed",
-                table: "Tråde");
+                table: "Traade");
 
             migrationBuilder.RenameColumn(
                 name: "stemOp",
-                table: "Tråde",
+                table: "Traade",
                 newName: "stem");
         }
     }

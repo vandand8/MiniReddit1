@@ -39,7 +39,7 @@ namespace webAPIMiniReddit.Migrations
                     b.ToTable("Kommentare", (string)null);
                 });
 
-            modelBuilder.Entity("webAPIMiniReddit.Model.Tråd", b =>
+            modelBuilder.Entity("webAPIMiniReddit.Model.Traad", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace webAPIMiniReddit.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("brugerTråd")
+                    b.Property<string>("brugerTraad")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -74,7 +74,7 @@ namespace webAPIMiniReddit.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Tråde", (string)null);
+                    b.ToTable("Traade", (string)null);
                 });
 #pragma warning restore 612, 618
         }

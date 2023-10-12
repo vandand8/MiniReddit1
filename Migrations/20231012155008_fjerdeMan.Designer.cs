@@ -11,8 +11,8 @@ using webAPIMiniReddit.Model;
 namespace webAPIMiniReddit.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231011091838_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231012155008_fjerdeMan")]
+    partial class fjerdeMan
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,7 +62,10 @@ namespace webAPIMiniReddit.Migrations
                     b.Property<string>("kommentar")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("stem")
+                    b.Property<int>("stemNed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("stemOp")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("titel")

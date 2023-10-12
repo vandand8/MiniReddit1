@@ -2,11 +2,11 @@
 
 namespace webAPIMiniReddit.Model
 {
-    public class Tråd
+    public class Traad
     {
         [Key]
         public int id { get; set; }
-        public string brugerTråd { get; set; }
+        public string brugerTraad { get; set; }
         public DateTime date { get; set; }
         public string titel { get; set; }
         public string beskrivelse { get; set; }

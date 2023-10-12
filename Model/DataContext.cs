@@ -4,7 +4,7 @@ namespace webAPIMiniReddit.Model
 {
     public class DataContext : DbContext
     {
-        public DbSet<Tråd> Tråde { get; set; }
+        public DbSet<Traad> Traade { get; set; }
         public DbSet<Kommentar> Kommentare { get; set; }
 
         public string DbPath { get; set; }
@@ -18,7 +18,7 @@ namespace webAPIMiniReddit.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Tråd>().ToTable("Tråde");
+            modelBuilder.Entity<Traad>().ToTable("Traade");
             modelBuilder.Entity<Kommentar>().ToTable("Kommentare");
         }
     }

@@ -27,12 +27,12 @@ namespace webAPIMiniReddit.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tråde",
+                name: "Traade",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    brugerTråd = table.Column<string>(type: "TEXT", nullable: false),
+                    brugerTraad = table.Column<string>(type: "TEXT", nullable: false),
                     date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     titel = table.Column<string>(type: "TEXT", nullable: false),
                     beskrivelse = table.Column<string>(type: "TEXT", nullable: false),
@@ -42,7 +42,7 @@ namespace webAPIMiniReddit.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tråde", x => x.id);
+                    table.PrimaryKey("PK_Traade", x => x.id);
                 });
         }
 
@@ -53,7 +53,7 @@ namespace webAPIMiniReddit.Migrations
                 name: "Kommentare");
 
             migrationBuilder.DropTable(
-                name: "Tråde");
+                name: "Traade");
         }
     }
 }

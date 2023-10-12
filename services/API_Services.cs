@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.Text.Json;
 using webAPIMiniReddit.Model;
 namespace webAPIMiniReddit.API_Services
 {
@@ -6,7 +7,7 @@ namespace webAPIMiniReddit.API_Services
     {
         private readonly HttpClient http;
         private readonly IConfiguration configuration;
-        private readonly string baseAPI = " ";
+        private readonly string baseAPI = "";
 
         public Api_Service(HttpClient http, IConfiguration configuration)
         {
@@ -15,16 +16,36 @@ namespace webAPIMiniReddit.API_Services
             this.baseAPI = configuration["base_api"];
         }
 
-        public async Task<Tråd[]> GetPosts()
+        public async Task<Traad[]> GetPosts()
         {
-            string url = $"{baseAPI}Tråd/";
-            return await http.GetFromJsonAsync<Tråd[]>(url);
+            string url = $"{baseAPI}Traad/";
+            return await http.GetFromJsonAsync<Traad[]>(url);
         }
 
-        public async Task<Tråd> GetPost(int id)
+        public async Task<Traad> GetPost(int id)
         {
-            string url = $"{baseAPI}tråd/{id}/";
-            return await http.GetFromJsonAsync<Tråd>(url);
+            string url = $"{baseAPI}Traad/{id}/";
+            return await http.GetFromJsonAsync<Traad>(url);
+        }
+
+        public async Task<Kommentar> CreateComment(string text, int idKommentar, string brugerKommentar)
+        {
+            string url = $"{baseAPI}Traad/{idKommentar}/kommentar";
+
+            // Post JSON to API, save the HttpResponseMessage
+            HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { text, brugerKommentar });
+
+            // Get the JSON string from the response
+            string json = msg.Content.ReadAsStringAsync().Result;
+
+            // Deserialize the JSON string to a Comment object
+            Kommentar? newKommentar = JsonSerializer.Deserialize<Kommentar>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true // Ignore case when matching JSON properties to C# properties 
+            });
+
+            // Return the new comment 
+            return newKommentar;
         }
     }
 }
