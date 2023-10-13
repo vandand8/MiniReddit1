@@ -9,8 +9,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-builder.Services.AddSingleton<Api_Service>();
+//builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+//builder.Services.AddSingleton<Api_Service>();
+
+var AllowSomeStuff = "_AloowSomeStuff";
+builder.Services.AddCors(options =>
+{
+options.AddPolicy(name: AllowSomeStuff, builder => {
+    builder.AllowAnyOrigin()
+           .AllowAnyHeader()
+           .AllowAnyMethod();
+});
+});
+
 
 var app = builder.Build();
 
@@ -26,5 +37,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(AllowSomeStuff);
+
 
 app.Run();
