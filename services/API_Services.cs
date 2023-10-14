@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.Net.Http.Json;
 using System.Text.Json;
 using webAPIMiniReddit.Model;
 namespace webAPIMiniReddit.API_Services
@@ -28,12 +29,12 @@ namespace webAPIMiniReddit.API_Services
             return await http.GetFromJsonAsync<Traad>(url);
         }
 
-        public async Task<Kommentar> CreateComment(string text, int idKommentar, string brugerKommentar)
+        public async Task<Kommentar> CreateComment(string tIxt, int iddKommentar, int brugerIDD)
         {
-            string url = $"{baseAPI}Traad/{idKommentar}/kommentar";
+            string url = $"{baseAPI}traade/{iddKommentar}/kommentar";
 
             // Post JSON to API, save the HttpResponseMessage
-            HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { text, brugerKommentar });
+            HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { tIxt, brugerIDD });
 
             // Get the JSON string from the response
             string json = msg.Content.ReadAsStringAsync().Result;
