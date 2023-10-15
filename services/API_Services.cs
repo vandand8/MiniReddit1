@@ -1,51 +1,38 @@
 ﻿using Microsoft.Extensions.Hosting;
 using System.Text.Json;
 using webAPIMiniReddit.Model;
-namespace webAPIMiniReddit.API_Services
+namespace webAPIMiniReddit.Services
 {
     public class Api_Service
     {
+        private readonly DataContext _dc;
         private readonly HttpClient http;
         private readonly IConfiguration configuration;
         private readonly string baseAPI = "";
 
-        public Api_Service(HttpClient http, IConfiguration configuration)
+        public Api_Service(DataContext dc) 
         {
-            this.http = http;
-            this.configuration = configuration;
-            this.baseAPI = configuration["base_api"];
+            _dc = dc;
         }
 
         public async Task<Traad[]> GetPosts()
         {
-            string url = $"{baseAPI}Traad/";
-            return await http.GetFromJsonAsync<Traad[]>(url);
+            return _dc.Traade.ToArray();
         }
 
-        public async Task<Traad> GetPost(int id)
-        {
-            string url = $"{baseAPI}Traad/{id}/";
-            return await http.GetFromJsonAsync<Traad>(url);
-        }
 
         public async Task<Kommentar> CreateComment(string text, int idKommentar, string brugerKommentar)
         {
-            string url = $"{baseAPI}Traad/{idKommentar}/kommentar";
-
-            // Post JSON to API, save the HttpResponseMessage
-            HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { text, brugerKommentar });
-
-            // Get the JSON string from the response
-            string json = msg.Content.ReadAsStringAsync().Result;
-
-            // Deserialize the JSON string to a Comment object
-            Kommentar? newKommentar = JsonSerializer.Deserialize<Kommentar>(json, new JsonSerializerOptions
+            _dc.Kommentare.Add(new Kommentar()
             {
-                PropertyNameCaseInsensitive = true // Ignore case when matching JSON properties to C# properties 
+                idKommentar = idKommentar,
+                brugerKommentar = brugerKommentar,
+                text = text,
+                dato = DateTime.Now
             });
-
-            // Return the new comment 
-            return newKommentar;
+            _dc.SaveChanges();
+            return (await _dc.Kommentare.FindAsync(idKommentar))!;
         }
+
     }
 }

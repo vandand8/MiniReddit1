@@ -1,5 +1,9 @@
-using webAPIMiniReddit.API_Services;
+using webAPIMiniReddit.Services;
 using webAPIMiniReddit.Model;
+using static System.Net.WebRequestMethods;
+using static System.Net.Mime.MediaTypeNames;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,17 +13,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-//builder.Services.AddSingleton<Api_Service>();
+builder.Services.AddDbContext<DataContext>();
 
-var AllowSomeStuff = "_AloowSomeStuff";
+builder.Services.AddScoped<Api_Service>();
+
+var AllowSomeStuff = "_AllowSomeStuff";
 builder.Services.AddCors(options =>
 {
-options.AddPolicy(name: AllowSomeStuff, builder => {
-    builder.AllowAnyOrigin()
-           .AllowAnyHeader()
-           .AllowAnyMethod();
-});
+    options.AddPolicy(name: "AllowSomeStuff", builder => {
+        builder.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
 });
 
 
@@ -33,6 +38,15 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//string text, int idKommentar, string brugerKommentar
+
+app.MapPost("/api/Traad/{idKommentar}", (Api_Service service, string text, int idKommentar, string brugerKommentar) =>
+{
+    return service.CreateComment(text, idKommentar, brugerKommentar);
+});
+
+
 
 app.UseAuthorization();
 
