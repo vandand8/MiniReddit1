@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.Net.Http.Json;
 using System.Text.Json;
 using webAPIMiniReddit.Model;
 namespace webAPIMiniReddit.Services
@@ -21,7 +22,7 @@ namespace webAPIMiniReddit.Services
         }
 
 
-        public async Task<Kommentar> CreateComment(string text, int idKommentar, string brugerKommentar)
+        public async Task<Kommentar> CreateComment(string tIxt, int iddKommentar, int brugerIDD)
         {
             _dc.Kommentare.Add(new Kommentar()
             {
