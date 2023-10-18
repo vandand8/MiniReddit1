@@ -22,14 +22,14 @@ namespace webAPIMiniReddit.Services
         }
 
 
-        public async Task<Kommentar> CreateComment(string tIxt, int iddKommentar, int brugerIDD)
+        public async Task<Kommentar> CreateComment(string text, int idKommentar, string brugerKommentar)
         {
             _dc.Kommentare.Add(new Kommentar()
             {
                 idKommentar = idKommentar,
                 brugerKommentar = brugerKommentar,
                 text = text,
-                dato = DateTime.Now
+                dato = DateTime.Now 
             });
             _dc.SaveChanges();
             return (await _dc.Kommentare.FindAsync(idKommentar))!;
