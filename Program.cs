@@ -41,6 +41,17 @@ app.UseHttpsRedirection();
 
 //string text, int idKommentar, string brugerKommentar
 
+
+app.MapGet("/api/Traad/", (Api_Service service, int id, string brugerTraad, string titel, string beskrivelse) =>
+{
+    return service.GetPosts(id, brugerTraad, titel, beskrivelse);
+});
+
+app.MapPost("/api/Traad/", (Api_Service service, int id, string brugerTraad, string titel, string beskrivelse) =>
+{
+    return service.CreatePost(id, brugerTraad, titel, beskrivelse);
+});
+
 app.MapPost("/api/Traad/{idKommentar}", (Api_Service service, string text, int idKommentar, string brugerKommentar) =>
 {
     return service.CreateComment(text, idKommentar, brugerKommentar);

@@ -11,8 +11,8 @@ using webAPIMiniReddit.Model;
 namespace webAPIMiniReddit.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231014124328_opretteDb")]
-    partial class opretteDb
+    [Migration("20231018154753_HALLOMAN")]
+    partial class HALLOMAN
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -2,6 +2,8 @@
 using System.Net.Http.Json;
 using System.Text.Json;
 using webAPIMiniReddit.Model;
+using static System.Net.Mime.MediaTypeNames;
+
 namespace webAPIMiniReddit.Services
 {
     public class Api_Service
@@ -16,12 +18,29 @@ namespace webAPIMiniReddit.Services
             _dc = dc;
         }
 
-        public async Task<Traad[]> GetPosts()
+        //Hent tråde
+        public async Task<Traad[]> GetPosts(int id, string brugerTraad, string titel, string beskrivelse)
         {
             return _dc.Traade.ToArray();
         }
 
+        //Opret tråde
+        public async Task<Traad> CreatePost(int id, string brugerTraad, string titel, string beskrivelse)
+        {
+            _dc.Traade.Add(new Traad()
+            {
+                id = id,
+                brugerTraad = brugerTraad,
+                titel = titel,
+                beskrivelse = beskrivelse,
+                date = DateTime.Now,
+            });
+            _dc.SaveChanges();
+            return (await _dc.Traade.FindAsync(id))!;
+        }
 
+
+        //Opret kommentar
         public async Task<Kommentar> CreateComment(string text, int idKommentar, string brugerKommentar)
         {
             _dc.Kommentare.Add(new Kommentar()

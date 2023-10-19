@@ -5,7 +5,7 @@
 namespace webAPIMiniReddit.Migrations
 {
     /// <inheritdoc />
-    public partial class opretteDb : Migration
+    public partial class HALLOMAN : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
