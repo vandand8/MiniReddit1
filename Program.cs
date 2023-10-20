@@ -3,6 +3,7 @@ using webAPIMiniReddit.Model;
 using static System.Net.WebRequestMethods;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,9 +53,18 @@ app.MapPost("/api/Traad/", (Api_Service service, int id, string brugerTraad, str
     return service.CreatePost(id, brugerTraad, titel, beskrivelse);
 });
 
+
+
+
+
 app.MapPost("/api/Traad/{idKommentar}", (Api_Service service, string text, int idKommentar, string brugerKommentar) =>
 {
     return service.CreateComment(text, idKommentar, brugerKommentar);
+});
+
+app.MapGet("/api/Traad/{idKommentar}", (Api_Service service, string text, int idKommentar, string brugerKommentar) =>
+{
+    return service.GetComment(text, idKommentar, brugerKommentar);
 });
 
 

@@ -13,7 +13,7 @@ namespace webAPIMiniReddit.Services
         private readonly IConfiguration configuration;
         private readonly string baseAPI = "";
 
-        public Api_Service(DataContext dc) 
+        public Api_Service(DataContext dc)
         {
             _dc = dc;
         }
@@ -48,10 +48,16 @@ namespace webAPIMiniReddit.Services
                 idKommentar = idKommentar,
                 brugerKommentar = brugerKommentar,
                 text = text,
-                dato = DateTime.Now 
+                dato = DateTime.Now
             });
             _dc.SaveChanges();
             return (await _dc.Kommentare.FindAsync(idKommentar))!;
+        }
+
+
+        public async Task<Kommentar[]> GetComment( string text, int idKommentar, string brugerKommentar
+        {
+            return _dc.Kommentare.ToArray();
         }
 
     }
