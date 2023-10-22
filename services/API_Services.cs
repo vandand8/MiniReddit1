@@ -55,10 +55,34 @@ namespace webAPIMiniReddit.Services
         }
 
 
-        public async Task<Kommentar[]> GetComment( string text, int idKommentar, string brugerKommentar
+        public async Task<Kommentar[]> GetComment(string text, int idKommentar, string brugerKommentar)
         {
             return _dc.Kommentare.ToArray();
         }
 
+        public void SeedData()
+        {
+
+            Traad traad = _dc.Traade.FirstOrDefault()!;
+            if (traad == null)
+            {
+                traad = new Traad { titel = "Yo", beskrivelse = "hfiefjo" };
+                _dc.Traade.Add(traad);
+                _dc.Traade.Add(new Traad { titel = "Satoshi", beskrivelse = "hfiefhoei" });
+                _dc.Traade.Add(new Traad { titel = "Wassup", beskrivelse = "jopfjp" });
+            }
+
+            Kommentar kommentar = _dc.Kommentare.FirstOrDefault()!;
+            if (kommentar == null)
+            {
+                _dc.Kommentare.Add(new Kommentar { text = "Bro, who is Satoshi", brugerKommentar = "Nakamigo" });
+                _dc.Kommentare.Add(new Kommentar { text = "What is Bitcoin?", brugerKommentar = "WakawakaEH-EH" });
+                _dc.Kommentare.Add(new Kommentar { text = "Do you think Satoshi is Elon?", brugerKommentar = "SHAMINAMINA-EH-EH" });
+            }
+            
+            _dc.SaveChanges();
+        
+
+        }
     }
 }

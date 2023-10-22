@@ -11,8 +11,8 @@ using webAPIMiniReddit.Model;
 namespace webAPIMiniReddit.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231018154753_HALLOMAN")]
-    partial class HALLOMAN
+    [Migration("20231022212929_testHvorAutoDataErUdkommenteret")]
+    partial class testHvorAutoDataErUdkommenteret
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,6 @@ namespace webAPIMiniReddit.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("brugerTraad")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("date")

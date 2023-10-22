@@ -68,6 +68,14 @@ app.MapGet("/api/Traad/{idKommentar}", (Api_Service service, string text, int id
 });
 
 
+// Seed data hvis nødvendigt.
+using (var scope = app.Services.CreateScope())
+{
+    var dataService = scope.ServiceProvider.GetRequiredService<Api_Service>();
+    dataService.SeedData(); // Fylder data på, hvis databasen er tom. Ellers ikke.
+}
+
+
 
 app.UseAuthorization();
 

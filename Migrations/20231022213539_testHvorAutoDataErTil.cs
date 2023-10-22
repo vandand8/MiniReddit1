@@ -5,7 +5,7 @@
 namespace webAPIMiniReddit.Migrations
 {
     /// <inheritdoc />
-    public partial class HALLOMAN : Migration
+    public partial class testHvorAutoDataErTil : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
