@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-using System.Net.Http.Json;
-using System.Text.Json;
-using webAPIMiniReddit.Model;
-using static System.Net.Mime.MediaTypeNames;
+﻿using shared.Model;
 
 namespace webAPIMiniReddit.Services
 {

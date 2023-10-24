@@ -1,9 +1,9 @@
 using webAPIMiniReddit.Services;
-using webAPIMiniReddit.Model;
 using static System.Net.WebRequestMethods;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
+using webAPIMiniReddit;
 
 var builder = WebApplication.CreateBuilder(args);
 

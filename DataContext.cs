@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-namespace webAPIMiniReddit.Model
+using shared.Model;
+
+namespace webAPIMiniReddit
 
 {
     public class DataContext : DbContext

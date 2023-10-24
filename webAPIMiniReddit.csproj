@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="Model\API_services\**" />
+    <Compile Remove="Pages\**" />
     <Content Remove="Model\API_services\**" />
+    <Content Remove="Pages\**" />
     <EmbeddedResource Remove="Model\API_services\**" />
+    <EmbeddedResource Remove="Pages\**" />
     <None Remove="Model\API_services\**" />
+    <None Remove="Pages\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\" />
+    <ProjectReference Include="..\shared\shared.csproj" />
   </ItemGroup>
 
 </Project>
